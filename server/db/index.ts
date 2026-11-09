@@ -1,18 +1,37 @@
 import { Collection, Db, MongoClient } from "mongodb";
-import { UserDocument } from "../type/user";
+import { TicketDocument } from "../type/ticket";
+import { AdminDocument } from "../type/admin";
 
-const uri = process.env.MONGODB_URI ?? "mongodb+srv://baraks_db_user:236TocitlNNQxEuT@cluster0.jajq2gv.mongodb.net/";
+let client: MongoClient | null = null;
+let db: Db | null = null;
 
-const client = new MongoClient(uri);
-const db: Db = client.db("users_project");
+function getDb(): Db {
+    if (db === null) {
+        throw new Error("The database is not connected");
+    }
+    return db;
+}
 
-export const usersCollection: Collection<UserDocument> = db.collection<UserDocument>("users");
+export function ticketsCollection(): Collection<TicketDocument> {
+    return getDb().collection<TicketDocument>("tickets");
+}
 
-export async function connectDB(): Promise<void> {
+export function adminsCollection(): Collection<AdminDocument> {
+    return getDb().collection<AdminDocument>("admins");
+}
+
+export async function connectDB(uri: string, dbName: string): Promise<void> {
+    client = new MongoClient(uri);
     await client.connect();
-    console.log("Connected to MongoDB");
+    db = client.db(dbName);
+    await adminsCollection().createIndex({ username: 1 }, { unique: true });
+    console.log(`Connected to MongoDB (database "${dbName}")`);
 }
 
 export async function closeDB(): Promise<void> {
-    await client.close();
+    if (client !== null) {
+        await client.close();
+        client = null;
+        db = null;
+    }
 }
