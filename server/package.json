@@ -1,0 +1,27 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "The TypeScript course is designed to teach students with a JavaScript background the fundamentals of TypeScript. The course covers key concepts such as static typing, interfaces, advanced type definitions, generics, and decorators. Students will learn to write robust and maintainable code, understand the advantages of type safety, and explore TypeScript's integration with modern JavaScript frameworks and tools. This course emphasizes hands-on practice and real-world applications, preparing students for professional development in TypeScript-based projects.",
+  "main": "dist/server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node dist/server/index.js",
+    "dev": "tsc && nodemon dist/server/index.js",
+    "watch": "tsc -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "mongodb": "^7.0.0",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.0.3",
+    "nodemon": "^3.1.11"
+  }
+}
