@@ -1,45 +1,37 @@
-import { useEffect, useState } from "react";
-import type { PublicUser } from "./types/user";
-import { getUsers } from "./services/usersApi";
-import UserForm from "./components/UserForm";
-import UserList from "./components/UserList";
-import Loading from "./components/Loading";
-import ErrorMessage from "./components/ErrorMessage";
+import { BrowserRouter, Route, Routes } from "react-router";
+import AuthProvider from "./context/AuthProvider";
+import PublicLayout from "./components/PublicLayout";
+import AdminLayout from "./components/AdminLayout";
+import RequireAdmin from "./components/RequireAdmin";
+import NewTicketPage from "./pages/NewTicketPage";
+import TicketCreatedPage from "./pages/TicketCreatedPage";
+import LoginPage from "./pages/LoginPage";
+import DashboardPage from "./pages/DashboardPage";
+import TicketsPage from "./pages/TicketsPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
-    const [users, setUsers] = useState<PublicUser[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
-
-    useEffect(() => {
-        getUsers()
-            .then((data) => setUsers(data))
-            .catch(() => setError("Failed to load users"))
-            .finally(() => setIsLoading(false));
-    }, []);
-
-    const handleUserCreated = (user: PublicUser) => {
-        setUsers((previous) => [...previous, user]);
-    };
-
-    const handleUserDeleted = (id: string) => {
-        setUsers((previous) => previous.filter((user) => user.id !== id));
-    };
-
     return (
-        <div className="min-h-screen bg-slate-100 py-10">
-            <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4">
-                <header>
-                    <h1 className="text-3xl font-bold text-slate-900">Users Management</h1>
-                    <p className="text-slate-500">React + TypeScript + Express + MongoDB</p>
-                </header>
+        <AuthProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route element={<PublicLayout />}>
+                        <Route path="/" element={<NewTicketPage />} />
+                        <Route path="/ticket-created" element={<TicketCreatedPage />} />
+                    </Route>
 
-                <UserForm onUserCreated={handleUserCreated} />
+                    <Route path="/admin/login" element={<LoginPage />} />
 
-                {isLoading && <Loading text="Loading users..." />}
-                {error !== null && <ErrorMessage message={error} />}
-                {!isLoading && error === null && <UserList users={users} onUserDeleted={handleUserDeleted} />}
-            </div>
-        </div>
+                    <Route element={<RequireAdmin />}>
+                        <Route element={<AdminLayout />}>
+                            <Route path="/admin" element={<DashboardPage />} />
+                            <Route path="/admin/tickets" element={<TicketsPage />} />
+                        </Route>
+                    </Route>
+
+                    <Route path="*" element={<NotFoundPage />} />
+                </Routes>
+            </BrowserRouter>
+        </AuthProvider>
     );
 }
