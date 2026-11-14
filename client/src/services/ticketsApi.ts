@@ -22,5 +22,5 @@ export async function deleteTicket(id: string): Promise<void> {
 }
 
 export function exportTicketsCsv(): Promise<Blob> {
-    return downloadFile("/tickets/export");
+    return downloadFile("/tickets/export/csv");
 }

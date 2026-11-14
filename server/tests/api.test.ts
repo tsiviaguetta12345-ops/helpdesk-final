@@ -79,12 +79,12 @@ describe("Help Desk API", () => {
     });
 
     test("refuses a wrong password", async () => {
-        const result = await call("POST", "/auth/login", { username: "admin", password: "wrong" }, false);
+        const result = await call("POST", "/admin/login", { username: "admin", password: "wrong" }, false);
         assert.equal(result.status, 401);
     });
 
     test("logs in the administrator", async () => {
-        const result = await call("POST", "/auth/login", { username: "admin", password: "secret-password" }, false);
+        const result = await call("POST", "/admin/login", { username: "admin", password: "secret-password" }, false);
         assert.equal(result.status, 200);
         token = result.body.data.token;
     });
@@ -111,7 +111,7 @@ describe("Help Desk API", () => {
     });
 
     test("exports CSV", async () => {
-        const result = await call("GET", "/tickets/export");
+        const result = await call("GET", "/tickets/export/csv");
         assert.equal(result.status, 200);
         assert.match(result.body, /Ticket ID,Full Name,Email/);
         assert.match(result.body, /Printer does not work/);

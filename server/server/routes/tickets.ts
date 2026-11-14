@@ -38,7 +38,7 @@ ticketsRouter.get("/", async (_req: Request, res: Response<ApiResponse<PublicTic
 });
 
 // Declared before "/:id" so "export" is not read as an id.
-ticketsRouter.get("/export", async (_req: Request, res: Response) => {
+ticketsRouter.get("/export/csv", async (_req: Request, res: Response) => {
     try {
         const csv = ticketsToCsv(await getTickets());
         res.setHeader("Content-Type", "text/csv; charset=utf-8");

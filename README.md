@@ -50,9 +50,9 @@ Database `helpdesk` with two collections:
 | Method | Endpoint | Access | Purpose |
 |---|---|---|---|
 | POST | `/tickets` | Public | Open a ticket (the server sets `status = Open`, `createdAt`, `updatedAt`) |
-| POST | `/auth/login` | Public | Check username + password, return a JWT |
+| POST | `/admin/login` | Public | Check username + password, return a JWT |
 | GET | `/tickets` | Admin | All tickets, newest first |
-| GET | `/tickets/export` | Admin | Download all tickets as a CSV file |
+| GET | `/tickets/export/csv` | Admin | Download all tickets as a CSV file |
 | GET | `/tickets/:id` | Admin | One ticket |
 | PATCH | `/tickets/:id` | Admin | Change `status` and/or `priority` (refreshes `updatedAt`) |
 | DELETE | `/tickets/:id` | Admin | Delete a ticket |

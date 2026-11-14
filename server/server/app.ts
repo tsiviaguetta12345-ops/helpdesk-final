@@ -11,7 +11,7 @@ export function createApp(allowedOrigins: string[]) {
     app.use(express.json({ limit: "100kb" }));
 
     app.use("/tickets", ticketsRouter);
-    app.use("/auth", authRouter);
+    app.use("/admin", authRouter);
 
     app.use((_req: Request, res: Response<ApiErrorResponse>) => {
         res.status(404).json({ success: false, error: "Route not found" });
