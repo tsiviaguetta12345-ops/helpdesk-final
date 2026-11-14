@@ -23,7 +23,7 @@ export default function TicketCreatedPage() {
     return (
         <div className="flex flex-col items-center gap-4 rounded-xl border border-slate-200 bg-white p-10 text-center shadow-sm">
             <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-2xl text-emerald-600">✓</div>
-            <h1 className="text-2xl font-bold text-slate-900">Your ticket was received</h1>
+            <h1 className="text-2xl font-bold text-slate-900">Your support ticket was submitted successfully</h1>
             <p className="text-slate-600">
                 Ticket number <span className="font-semibold text-slate-900">{shortId(ticket.id)}</span> – "{ticket.title}".
             </p>

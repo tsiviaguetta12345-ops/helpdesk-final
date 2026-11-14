@@ -20,7 +20,7 @@ authRouter.post("/login", async (req: Request, res: Response<ApiResponse<LoginRe
 
         // Same answer for an unknown username and a wrong password.
         if (admin === null || !(await checkPassword(parsed.value.password, admin.passwordHash))) {
-            res.status(401).json({ success: false, error: "Wrong username or password" });
+            res.status(401).json({ success: false, error: "Invalid username or password" });
             return;
         }
 
