@@ -1,8 +1,9 @@
 import { PublicTicket } from "../type/ticket";
 
+// Same columns and order as the assignment (section 41).
 const HEADERS = [
-    "Ticket ID", "Full Name", "Email", "Phone", "Title", "Description",
-    "Category", "Priority", "Status", "Created At", "Updated At"
+    "Ticket ID", "Title", "Customer Name", "Email", "Phone",
+    "Category", "Priority", "Status", "Description", "Created At", "Updated At"
 ];
 
 // Puts the value between quotes when needed and doubles the quotes inside it.
@@ -14,8 +15,8 @@ function csvCell(value: string): string {
 
 export function ticketsToCsv(tickets: PublicTicket[]): string {
     const rows = tickets.map((ticket) => [
-        ticket.id, ticket.fullName, ticket.email, ticket.phone, ticket.title, ticket.description,
-        ticket.category, ticket.priority, ticket.status, ticket.createdAt, ticket.updatedAt
+        ticket.id, ticket.title, ticket.fullName, ticket.email, ticket.phone,
+        ticket.category, ticket.priority, ticket.status, ticket.description, ticket.createdAt, ticket.updatedAt
     ]);
 
     // The BOM at the start lets Excel read Hebrew letters correctly.

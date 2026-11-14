@@ -113,7 +113,7 @@ describe("Help Desk API", () => {
     test("exports CSV", async () => {
         const result = await call("GET", "/tickets/export/csv");
         assert.equal(result.status, 200);
-        assert.match(result.body, /Ticket ID,Full Name,Email/);
+        assert.match(result.body, /Ticket ID,Title,Customer Name,Email,Phone,Category,Priority,Status,Description,Created At,Updated At/);
         assert.match(result.body, /Printer does not work/);
     });
 
