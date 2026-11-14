@@ -20,6 +20,9 @@ export default function TicketsPage() {
 
     const visibleTickets = filterTickets(tickets, filters);
     const isFiltered = JSON.stringify(filters) !== JSON.stringify(noFilters);
+    const emptyMessage = tickets.length === 0
+        ? "No support tickets were found"
+        : "No tickets match the current search and filters";
 
     const handleExport = async () => {
         setIsExporting(true);
@@ -68,7 +71,7 @@ export default function TicketsPage() {
                             </button>
                         )}
                     </div>
-                    <TicketsTable tickets={visibleTickets} onTicketUpdated={replaceTicket} onTicketDeleted={removeTicket} />
+                    <TicketsTable tickets={visibleTickets} onTicketUpdated={replaceTicket} onTicketDeleted={removeTicket} emptyMessage={emptyMessage} />
                 </>
             )}
         </div>

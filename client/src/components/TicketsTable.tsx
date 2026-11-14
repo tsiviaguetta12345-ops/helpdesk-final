@@ -8,13 +8,15 @@ interface TicketsTableProps {
     tickets: PublicTicket[];
     onTicketUpdated: (ticket: PublicTicket) => void;
     onTicketDeleted: (id: string) => void;
+    // Text shown when the list is empty (no tickets at all, or no match for the search/filters).
+    emptyMessage: string;
 }
 
-export default function TicketsTable({ tickets, onTicketUpdated, onTicketDeleted }: TicketsTableProps) {
+export default function TicketsTable({ tickets, onTicketUpdated, onTicketDeleted, emptyMessage }: TicketsTableProps) {
     if (tickets.length === 0) {
         return (
             <div className="rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center text-slate-500">
-                No tickets found
+                {emptyMessage}
             </div>
         );
     }
