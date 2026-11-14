@@ -2,7 +2,7 @@ import { ObjectId } from "mongodb";
 
 export const TICKET_CATEGORIES = ["Hardware", "Software", "Network", "Account", "Other"] as const;
 export const TICKET_PRIORITIES = ["Low", "Medium", "High"] as const;
-export const TICKET_STATUSES = ["Open", "In Progress", "Closed"] as const;
+export const TICKET_STATUSES = ["Open", "In Progress", "Resolved"] as const;
 
 export type TicketCategory = (typeof TICKET_CATEGORIES)[number];
 export type TicketPriority = (typeof TICKET_PRIORITIES)[number];

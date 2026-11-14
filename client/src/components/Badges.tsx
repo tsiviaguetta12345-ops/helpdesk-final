@@ -3,7 +3,7 @@ import type { TicketPriority, TicketStatus } from "../types/ticket";
 const statusStyles: Record<TicketStatus, string> = {
     "Open": "bg-sky-100 text-sky-700",
     "In Progress": "bg-amber-100 text-amber-800",
-    "Closed": "bg-emerald-100 text-emerald-700"
+    "Resolved": "bg-emerald-100 text-emerald-700"
 };
 
 const priorityStyles: Record<TicketPriority, string> = {

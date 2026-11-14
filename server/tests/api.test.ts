@@ -65,7 +65,7 @@ describe("Help Desk API", () => {
     });
 
     test("creates a ticket with status Open", async () => {
-        const result = await call("POST", "/tickets", { ...validTicket, status: "Closed" }, false);
+        const result = await call("POST", "/tickets", { ...validTicket, status: "Resolved" }, false);
         assert.equal(result.status, 201);
         assert.equal(result.body.data.status, "Open");
         assert.equal(result.body.data.createdAt, result.body.data.updatedAt);

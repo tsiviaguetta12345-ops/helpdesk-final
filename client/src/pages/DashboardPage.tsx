@@ -24,11 +24,11 @@ export default function DashboardPage() {
             {!isLoading && error === null && (
                 <>
                     <div className="grid grid-cols-2 gap-4 lg:grid-cols-5">
-                        <StatCard label="Total tickets" value={tickets.length} accent="text-slate-900" />
+                        <StatCard label="Total Tickets" value={tickets.length} accent="text-slate-900" />
                         <StatCard label="Open" value={count((status) => status === "Open")} accent="text-sky-600" />
-                        <StatCard label="In progress" value={count((status) => status === "In Progress")} accent="text-amber-600" />
-                        <StatCard label="Closed" value={count((status) => status === "Closed")} accent="text-emerald-600" />
-                        <StatCard label="High priority (not closed)" value={count((status, priority) => priority === "High" && status !== "Closed")} accent="text-red-600" />
+                        <StatCard label="In Progress" value={count((status) => status === "In Progress")} accent="text-amber-600" />
+                        <StatCard label="Resolved" value={count((status) => status === "Resolved")} accent="text-emerald-600" />
+                        <StatCard label="High Priority" value={count((_status, priority) => priority === "High")} accent="text-red-600" />
                     </div>
 
                     <section className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
@@ -37,7 +37,7 @@ export default function DashboardPage() {
                             <Link to="/admin/tickets" className="text-sm font-medium text-violet-600 hover:underline">Manage all tickets →</Link>
                         </div>
                         {latest.length === 0 ? (
-                            <p className="text-slate-500">No tickets yet.</p>
+                            <p className="text-slate-500">No support tickets were found</p>
                         ) : (
                             <ul className="divide-y divide-slate-100">
                                 {latest.map((ticket) => (

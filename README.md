@@ -32,7 +32,7 @@ What changes: users become tickets, the single `App.tsx` screen becomes several 
 - `StatCard`, `StatusBadge`, `PriorityBadge`, `Loading`, `ErrorMessage`.
 
 ### Main types
-- Unions built from constant arrays: `TicketCategory` (`Hardware`, `Software`, `Network`, `Account`, `Other`), `TicketPriority` (`Low`, `Medium`, `High`), `TicketStatus` (`Open`, `In Progress`, `Closed`).
+- Unions built from constant arrays: `TicketCategory` (`Hardware`, `Software`, `Network`, `Account`, `Other`), `TicketPriority` (`Low`, `Medium`, `High`), `TicketStatus` (`Open`, `In Progress`, `Resolved`).
 - `CreateTicketInput` – what the public form sends.
 - `TicketDocument` – what is stored in MongoDB (dates are `Date`).
 - `PublicTicket` – what the server returns (`id` as a string, dates as ISO strings).
